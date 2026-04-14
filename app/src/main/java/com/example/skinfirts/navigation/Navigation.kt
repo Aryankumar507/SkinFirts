@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.skinfirts.activity.ScheduleScreen
+import com.example.skinfirts.activity.chatScreen
 import com.example.skinfirts.activity.homeScreen
 import com.example.skinfirts.activity.loginScreen
 import com.example.skinfirts.activity.loginScreen1
@@ -27,6 +29,12 @@ fun appNavigation(modifier: Modifier){
         }
         composable(route = Screen.HomeScreen.route){
             homeScreen(navController)
+        }
+        composable(route = Screen.ChatScreen.route){
+            chatScreen(navController)
+        }
+        composable(route = Screen.ScheduleScreen.route){
+            ScheduleScreen(navController)
         }
         composable(route = Screen.LoginScreen1.route){
             loginScreen1(navController)
