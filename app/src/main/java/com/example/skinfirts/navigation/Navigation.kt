@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.skinfirts.activity.ScheduleScreen
 import com.example.skinfirts.activity.chatScreen
+import com.example.skinfirts.activity.contactScreen
 import com.example.skinfirts.activity.homeScreen
 import com.example.skinfirts.activity.loginScreen
 import com.example.skinfirts.activity.loginScreen1
@@ -47,6 +48,9 @@ fun appNavigation(modifier: Modifier){
         }
         composable(route = Screen.SignUpScreen.route) {
             signUpScreen(navController)
+        }
+        composable ( route = Screen.ContactScreen.route ){
+            contactScreen(navController)
         }
         }
 }

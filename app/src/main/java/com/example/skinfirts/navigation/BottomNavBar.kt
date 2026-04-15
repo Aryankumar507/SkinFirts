@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -34,7 +35,8 @@ fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         bottomNavItem("Home", Icons.Default.Home, Screen.HomeScreen.route),
         bottomNavItem("Search", Icons.Default.Home, Screen.ChatScreen.route),
-        bottomNavItem("Profile", Icons.Default.Home, Screen.ScheduleScreen.route)
+        bottomNavItem("Profile", Icons.Default.Home, Screen.ScheduleScreen.route),
+        bottomNavItem("Profile", Icons.Default.Home, Screen.ContactScreen.route)
     )
     val currentRoute = navController.currentBackStackEntry?.destination?.route
    Row(modifier = Modifier
@@ -58,7 +60,9 @@ fun BottomNavigationBar(navController: NavController) {
                     Icon(imageVector = item.icon, contentDescription = item.title)
                 },
                 colors = NavigationBarItemDefaults.colors(
-
+                      selectedIconColor = Color.White,
+                      unselectedIconColor = Color.Blue,
+                      indicatorColor = Color.Transparent
                 ))
 
             }
