@@ -54,13 +54,13 @@ fun splashScreen(navController: NavController){
         Text(text = "Skin",
             color = Color.White,
             fontFamily = fontSparatan,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Thin,
             fontSize = 50.sp)
 
         Text(text = "Firts",
             color = Color.White,
             fontFamily = fontSparatan,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Thin,
             fontSize = 50.sp
             )
         Text(text = "Dermatology Center",

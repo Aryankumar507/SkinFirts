@@ -12,4 +12,5 @@ val fontSparatan = FontFamily(
     Font(R.font.league_spartan_medium,FontWeight.Medium),
     Font(R.font.league_spartan_semibold,FontWeight.SemiBold),
     Font(R.font.league_spartan_extrabold,FontWeight.ExtraBold),
+    Font(R.font.league_spartan_thin, FontWeight.Thin)
 )

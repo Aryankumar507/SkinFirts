@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ModalBottomSheet
@@ -34,14 +35,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.skinfirts.R
 import com.example.skinfirts.navigation.BottomNavigationBar
+import com.example.skinfirts.ui.theme.appBlue
+import com.example.skinfirts.ui.theme.fontSparatan
 import com.example.skinfirts.ui.theme.outline_box_unselected_bc
 import com.example.skinfirts.view_function.dateDay
 import com.example.skinfirts.view_function.dateDayItem
@@ -82,8 +88,15 @@ fun homeScreen(navController: NavController) {
                         .height(75.dp),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "Text one")
-                    Text(text = "Text two")
+                    Text(text = "Text one",
+                        fontFamily = fontSparatan,
+                        color = appBlue
+                    )
+                    Text(text = "Text two",
+                        fontFamily = fontSparatan,
+                        color = Color.Black,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Medium)
                 }
 
                 Row(
@@ -195,16 +208,68 @@ fun homeScreen(navController: NavController) {
                        dateDayItem("15","Mon"),
                    )
 
+               var selectedIndex by remember {mutableStateOf(0)}
+               var date by remember { mutableStateOf("") }
+               var day by remember { mutableStateOf("") }
+
+               date = dditems[selectedIndex].date
+               day = dditems[selectedIndex].day
+
+
                LazyRow(modifier = Modifier){
-                   items(dditems) {
-                       Box(modifier = Modifier
-                           .padding(10.dp)){
-                           dateDay(item = it)
-                       }
+                  itemsIndexed(dditems) { index,item->
+                      Box(modifier = Modifier.padding(10.dp)){
+                          dateDay(
+                              item = item,
+                              isSelected = index == selectedIndex,
+                              onClick = {
+                                  selectedIndex = index
+                                  date = item.date
+                                  day = item.day
+                              }
+                          )
+                  }
                    }
                }
-               LazyColumn {
+               Column(
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .padding(16.dp)
+                       .background(Color.White, shape = RoundedCornerShape(20.dp))
+                       .padding(16.dp)
+               ){
+                   Text(
+                       text = "${date} ${day} - Today",
+                       modifier = Modifier.align(Alignment.End),
+                       color = appBlue
+                   )
 
+                   Spacer(modifier = Modifier.height(10.dp))
+
+                   Row(modifier = Modifier,
+                       verticalAlignment = Alignment.CenterVertically){
+                       Column{
+                           Text("9 AM")
+                           Spacer(modifier = Modifier.height(10.dp))
+                           Text("10 AM")
+                           Spacer(modifier = Modifier.height(10.dp))
+                           Text("11 AM")
+                           Spacer(modifier = Modifier.height(10.dp))
+                           Text("12 AM")
+
+                       }
+                       Spacer(modifier = Modifier.width(10.dp))
+
+                       Box(modifier = Modifier
+                           .background(appBlue.copy(alpha = 0.2f), shape = RoundedCornerShape(16.dp))
+                           .padding(12.dp)){
+                           Column(modifier = Modifier
+                               .fillMaxWidth(.9f)){
+                               Text("Dr. Aryan Kumar",color = appBlue)
+                               Text("Skin Care")
+                           }
+                       }
+                   }
                }
            }
        }
